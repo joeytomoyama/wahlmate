@@ -13,7 +13,7 @@ function enhanceGraph(svg){
     const title=document.createElementNS('http://www.w3.org/2000/svg','title');title.textContent=full;node.prepend(title);
   });
   const order=[...svg.querySelectorAll('[data-party]')].sort((a,b)=>(parseFloat(scores[b.querySelector('text').textContent.trim()])||0)-(parseFloat(scores[a.querySelector('text').textContent.trim()])||0)).map(n=>+n.dataset.party);
-  svg.setAttribute('viewBox','0 0 720 680');
+  svg.setAttribute('viewBox',`0 0 720 ${Math.max(680,90+svg.querySelectorAll('[data-node]').length*34)}`);
   order.forEach((oldIndex,displayIndex)=>{
     const node=svg.querySelector(`[data-party="${oldIndex}"]`);if(!node)return;
     const wrapper=document.createElementNS('http://www.w3.org/2000/svg','g');
