@@ -1,4 +1,4 @@
-export const parties=[['Union','CDU / CSU','#434750'],['SPD','Social Democrats','#e64348'],['Greens','Bündnis 90 / Die Grünen','#23965c'],['FDP','Free Democrats','#cfad00'],['AfD','Alternative für Deutschland','#159ed3'],['The Left','Die Linke','#c63c83'],['BSW','Bündnis Sahra Wagenknecht','#883b75']];
+export const parties=[['CDU/CSU','CDU / CSU','#434750'],['SPD','Sozialdemokratische Partei Deutschlands','#e64348'],['Die Grünen','Bündnis 90 / Die Grünen','#23965c'],['FDP','Freie Demokratische Partei','#cfad00'],['AfD','Alternative für Deutschland','#159ed3'],['Die Linke','Die Linke','#c63c83'],['BSW','Bündnis Sahra Wagenknecht','#883b75']];
 // Positions are editorial interpretations of the 2025 federal programmes.
 // 1: supports, -1: opposes, 0: qualified/mixed, null: insufficient evidence.
 export const questions=[
@@ -43,4 +43,5 @@ const germanQuestions=[
 ];
 questions.forEach((q,i)=>q.de={topic:germanQuestions[i][0],category:germanQuestions[i][1],statement:germanQuestions[i][2],pro:germanQuestions[i][3],con:germanQuestions[i][4]});
 export const sources=[['CDU / CSU','https://www.cdu.de/wahlprogramm-von-cdu-und-csu/'],['SPD','https://www.spd.de/bundestagswahl/programm'],['Greens','https://www.gruene.de/artikel/zusammen-wachsen'],['FDP','https://www.fdp.de/bundestagswahl-2025-alles-laesst-sich-aendern'],['AfD','https://www.afd.de/afd_bundestagswahlprogramm2025_web/'],['The Left','https://www.die-linke.de/bundestagswahl-2025/wahlprogramm/'],['BSW','https://hb.bsw-vg.de/das-bsw-wahlprogramm-zur-bundestagswahl-202/']];
+sources.forEach((source,i)=>source[0]=parties[i][0]);
 export function rank(answers){return parties.map((p,j)=>{let total=0,count=0;questions.forEach((q,i)=>{if(answers[i]===null||answers[i]===undefined||answers[i]===0||q.positions[j]===null)return;total+=1-Math.abs(answers[i]-q.positions[j])/2;count++});return {party:j,score:count?Math.round(total/count*100):null,count}}).sort((a,b)=>(b.score??-1)-(a.score??-1)||a.party-b.party)};
