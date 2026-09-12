@@ -1,0 +1,7 @@
+.header-actions{display:flex;align-items:center;gap:8px}
+.language-toggle{display:flex;background:#edf2ee;border-radius:9px;padding:3px;gap:2px}
+.language-toggle button{border:0;background:transparent;color:var(--muted);font-size:12px;font-weight:700;padding:6px 8px;border-radius:6px}
+.language-toggle button.active{background:#fff;color:var(--green);box-shadow:0 1px 4px #183d2a18}
+.party-node.active circle{stroke:#173f30;stroke-width:3}
+.party-node.active text{font-weight:800}
+@media(max-width:540px){.header-actions{gap:2px}.language-toggle button{padding:5px 6px}.text-button{padding:10px 6px}}
