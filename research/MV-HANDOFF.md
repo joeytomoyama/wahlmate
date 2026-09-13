@@ -1,5 +1,9 @@
 # Mecklenburg-Vorpommern preparation
 
+## Interface update — 13 September 2026
+
+MV is now available as a clearly labelled bilingual preview. `dist/mv-data-v1.js` freezes the 21 drafts and six sourced positions; all party scores are deliberately null because coverage is insufficient. The graph can show the six sourced matches, but missing connections are explicitly not disagreement. The edition picker and v1 sharing registry support `mv`; Germany/Berlin snapshots are unchanged. `tests/editions.mjs` covers quiz completion, switching, both languages, shared results and preview scoring safeguards. When research is completed, add a new versioned snapshot rather than changing existing shared-link results. The pending research checklist below still applies.
+
 Saved 13 September 2026. User requested research now, implementation together tomorrow; no automation requested. Live site not modified by this preparation.
 
 ## Data

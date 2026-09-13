@@ -34,3 +34,8 @@
 @media(max-width:1150px){header .country{display:none}}
 @media(max-width:650px){header{height:auto;gap:12px}.edition-picker{margin-left:auto}#edition-select{min-width:176px}}
 @media(prefers-reduced-motion:reduce){#theme-toggle svg,#edition-select .edition-chevron{transition:none}}
+.edition-notice { margin: 0 0 1.75rem; padding: 1rem 1.25rem; border: 1px solid currentColor; border-radius: 14px; font-size: .9rem; line-height: 1.6; opacity: .85; }
+.edition-menu small { display: block; font-size: .8rem; opacity: .65; margin-top: .25rem; }
+.edition-picker { max-width: 100%; }
+#edition-select { max-width: 100%; white-space: normal; text-align: left; }
+.edition-menu { min-width: min(340px, calc(100vw - 40px)); max-width: calc(100vw - 40px); }

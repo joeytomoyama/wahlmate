@@ -1,9 +1,11 @@
 // Version 1 datasets are immutable: retain them when introducing later editions.
 import {questions,parties,sources,rank} from './data-v1.js';
 import {berlinQuestions,berlinParties,berlinSources,rankBerlin} from './berlin-data-v1.js';
+import {mvQuestions,mvParties,mvSources,rankMV} from './mv-data-v1.js';
 export const editionsV1 = {
   germany: {questions,parties,sources,rank},
-  berlin: {questions:berlinQuestions,parties:berlinParties,sources:berlinSources,rank:rankBerlin}
+  berlin: {questions:berlinQuestions,parties:berlinParties,sources:berlinSources,rank:rankBerlin},
+  mv: {questions:mvQuestions,parties:mvParties,sources:mvSources,rank:rankMV,preview:true}
 };
 export function encodeResult(edition, answers, language='de') {
   const data=editionsV1[edition];
