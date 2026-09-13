@@ -34,3 +34,6 @@ Saved 13 September 2026. User requested research now, implementation together to
 - Official ballot announcements: https://www.laiv-mv.de/Wahlen/Bekanntmachungen/
 
 No programme text was copied into this file; arguments and questions are editorial drafts. Source links are retained for verification.
+# Update — 14 September 2026
+
+The preview below is superseded for new questionnaires. See `MV-SOURCED-2026.md` and `dist/mv-data-v2.js`: 21 bilingual statements, 125 sourced positions, visible per-party coverage and working rankings. Remaining unknown positions are deliberately excluded. Old v1 shared links retain the original preview; do not overwrite either immutable dataset for future research updates.
