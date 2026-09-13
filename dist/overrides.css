@@ -32,6 +32,14 @@
 [data-theme="dark"] .party-hit[data-party="0"] circle{fill:#aeb8b2}
 [data-theme="dark"] .edge.lit[data-p="0"]{stroke:#aeb8b2!important}
 .party-hit:focus-visible{outline:2px solid var(--green);outline-offset:4px}
+#edition-select{appearance:none;min-width:156px;border:1px solid var(--line);border-radius:999px;padding:10px 36px 10px 14px;background-color:#f4f7f4;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='m3 4.5 3 3 3-3' stroke='%23687672' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;color:var(--green);font:700 12px 'DM Sans',sans-serif;letter-spacing:.35px;cursor:pointer;transition:background-color .18s,border-color .18s,box-shadow .18s}
+#edition-select:hover{background-color:#e8f0e9;border-color:#9eb3a4}
+#edition-select:focus-visible{outline:3px solid #768e30;outline-offset:3px}
+[data-theme="dark"] #edition-select{background-color:#293d30;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='m3 4.5 3 3 3-3' stroke='%23b9e6c9' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");color:#e6eee9;border-color:#496653}
+[data-theme="dark"] #edition-select:hover{background-color:#34503d;border-color:#83b598}
+#theme-toggle{font-size:0}
+#theme-toggle::before{content:'◑';font-size:22px;line-height:1;font-family:'Segoe UI Symbol','DM Sans',sans-serif}
+[data-theme="dark"] #theme-toggle::before{content:'☀';font-size:20px}
 @media(max-width:650px){header{height:auto;min-height:80px;flex-wrap:wrap;gap:12px;padding-top:14px;padding-bottom:14px}.header-actions{margin-left:auto}.country{display:none}}
 .language-toggle{display:flex;background:#edf2ee;border-radius:9px;padding:3px;gap:2px}
 .language-toggle button{border:0;background:transparent;color:var(--muted);font-size:12px;font-weight:700;padding:6px 8px;border-radius:6px}
