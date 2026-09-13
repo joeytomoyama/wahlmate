@@ -1,4 +1,4 @@
-import{questions,parties,sources,rank}from'./data.js';
+import{activeQuestions as germanyQuestions,activeParties as germanyParties,activeSources as germanySources,rank as rankGermany}from'./data.js';import{berlinQuestions,berlinParties,berlinSources,rankBerlin}from'./berlin-data.js';
 const root=document.querySelector('#app');let answers=Array(questions.length).fill(null),index=0,view='quiz',language='de',pinned=null,pinnedParty=null,d3;
 let theme='light';try{theme=localStorage.getItem('common-ground-theme')==='dark'?'dark':'light'}catch{}
 document.documentElement.dataset.theme=theme;
