@@ -1,5 +1,10 @@
 #theme-toggle{width:40px;height:40px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:12px;color:var(--green);background:transparent;transition:background .18s,border-color .18s,transform .18s}
 #theme-toggle::before{display:none!important}
+.result-actions{flex-wrap:wrap}
+.share-note,.share-feedback{font-size:14px;line-height:1.6;color:var(--muted)}
+.share-feedback:not(:empty){margin-top:14px;color:var(--green)}
+.share-feedback input{display:block;width:100%;margin-top:8px;padding:12px;border:1px solid var(--line);border-radius:10px;background:transparent;color:inherit;font:inherit}
+.share-error{max-width:1120px;margin:20px auto;padding:16px 24px;border:1px solid var(--line);border-radius:12px;color:var(--green)}
 .results-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:12px;color:var(--muted);font-size:14px;padding:24px;text-align:center}
 .results-spinner{flex:0 0 22px;width:22px;height:22px;border:2px solid var(--line);border-top-color:var(--green);border-radius:50%;animation:results-spin .8s linear infinite}
 .graph-wrap[aria-busy="true"] .network{visibility:hidden}
