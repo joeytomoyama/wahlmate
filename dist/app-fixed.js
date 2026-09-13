@@ -1,4 +1,5 @@
 import{questions as germanyQuestions,parties as germanyParties,sources as germanySources,rank as rankGermany}from'./data.js';import{berlinQuestions,berlinParties,berlinSources,rankBerlin}from'./berlin-data.js';
+import './header-controls.js';
 const root=document.querySelector('#app');let edition='germany',activeQuestions=germanyQuestions,activeParties=germanyParties,activeSources=germanySources,rank=rankGermany,questions=activeQuestions,parties=activeParties,sources=activeSources,answers=Array(activeQuestions.length).fill(null),index=0,view='quiz',language='de',pinned=null,pinnedParty=null,d3;
 let theme='light';try{theme=localStorage.getItem('common-ground-theme')==='dark'?'dark':'light'}catch{}
 document.documentElement.dataset.theme=theme;

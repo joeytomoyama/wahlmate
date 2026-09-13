@@ -1,4 +1,5 @@
 .header-actions{display:flex;align-items:center;gap:8px}
+/* Shared geometry and restrained emphasis for the header controls. */
 .author-credit{margin-left:auto;text-align:right;white-space:nowrap}
 .theme-toggle{width:38px;height:38px;flex-shrink:0;border:1px solid var(--line);border-radius:10px;background:transparent;color:inherit;font-size:24px;line-height:1;display:grid;place-items:center}
 .theme-toggle:hover{background:#e3ebe5}
