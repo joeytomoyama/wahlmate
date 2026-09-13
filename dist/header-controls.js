@@ -14,6 +14,8 @@ function enhanceHeader() {
   const menu = document.querySelector('#edition-menu');
   if (!button || !menu || button.dataset.enhanced) return;
   button.dataset.enhanced = 'true';
+  const chevron = button.querySelector('.edition-chevron');
+  if (chevron) chevron.innerHTML = '<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m7 10 5 5 5-5"/></svg>';
   button.setAttribute('aria-controls', 'edition-menu');
   button.setAttribute('aria-label', (document.documentElement.lang === 'de' ? 'Wahl auswählen: ' : 'Choose election: ') + button.textContent.replace('⌄', '').trim());
   const options = [...menu.querySelectorAll('[data-edition]')];
