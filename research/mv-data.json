@@ -1,0 +1,559 @@
+{
+  "status": "research-draft-not-for-scoring",
+  "researchedOn": "2026-09-13",
+  "edition": "mv",
+  "electionDate": "2026-09-20",
+  "electionSource": "https://www.laiv-mv.de/Wahlen/Landtagswahlen/2026/",
+  "partyOrder": [
+    "CDU",
+    "SPD",
+    "Die Grünen",
+    "FDP",
+    "AfD",
+    "Die Linke",
+    "BSW"
+  ],
+  "sources": [
+    {
+      "party": "SPD",
+      "url": "https://spd-mv.de/wahlen/landtagswahl-2026/regierungsprogramm-2026-2031",
+      "status": "Read programme overview; detailed PDF still to review."
+    },
+    {
+      "party": "CDU",
+      "url": "https://cdu-mv.de/2026/daniel-peters-wir-zeigen-mit-diesem-programm-mecklenburg-vorpommern-kann-mehr-besser-nur-mit-uns/",
+      "status": "Programme adoption confirmed 5 June 2026; locate final programme via cdu-mv.de/programme/."
+    },
+    {
+      "party": "Die Grünen",
+      "url": "https://gruene-mv.de/landtagswahl-2026-2/wahlprogramm-2026-1/",
+      "status": "Read preamble and start of climate chapter; remaining chapters to review."
+    },
+    {
+      "party": "FDP",
+      "url": "https://www.fdp-mv.de/programm",
+      "status": "Official index offers full 2026 programme, top topics and easier-language version; full text not yet reviewed."
+    },
+    {
+      "party": "AfD",
+      "url": "https://afd-mv.de/wp-content/uploads/2026/06/AfD-Regierungsprogramm-Mecklenburg-Vorpommern-2026.pdf",
+      "status": "Final June PDF URL found on candidate's official page https://petrafederau.com/landtagswahl-mv-2026; PDF not yet reviewed. May draft carries Entwurf and must not be treated as final."
+    },
+    {
+      "party": "Die Linke",
+      "url": "https://wahlprogramm26.die-linke-mv.de/",
+      "status": "Official programme discovered in search; opening returned an error. Retry or locate downloadable PDF."
+    },
+    {
+      "party": "BSW",
+      "url": "https://mv.bsw-vg.de/landtagswahl-2026/",
+      "status": "Official page confirms programme adopted 14 March 2026 and links full/short downloads; full text not yet reviewed."
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "key": "kita",
+      "topic": "Beitragsfreie Kita",
+      "category": "Familie & Bildung",
+      "statement": "Kita und Hort sollen für Eltern weiterhin beitragsfrei bleiben.",
+      "pro": "Entlastet Familien und erleichtert die Vereinbarkeit von Beruf und Betreuung.",
+      "con": "Bindet Mittel, die auch in mehr Personal und bessere Betreuung fließen könnten.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [
+        {
+          "party": "SPD",
+          "position": 1,
+          "note": "SPD overview, section II.1: continued fee-free nursery, kindergarten, after-school care and childminding.",
+          "url": "https://spd-mv.de/wahlen/landtagswahl-2026/regierungsprogramm-2026-2031"
+        }
+      ],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 2,
+      "key": "kitagruppen",
+      "topic": "Kleinere Kitagruppen",
+      "category": "Familie & Bildung",
+      "statement": "Das Land soll kleinere Betreuungsgruppen in Kitas finanzieren.",
+      "pro": "Mehr Zeit je Kind kann Betreuung und frühe Förderung verbessern.",
+      "con": "Zusätzliches Personal kostet Geld und ist vielerorts schwer zu finden.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [
+        {
+          "party": "SPD",
+          "position": 1,
+          "note": "SPD overview, section II.2: phased reduction of group sizes, with staffing ratios and implementation dates.",
+          "url": "https://spd-mv.de/wahlen/landtagswahl-2026/regierungsprogramm-2026-2031"
+        }
+      ],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 3,
+      "key": "schulstandorte",
+      "topic": "Schulen im ländlichen Raum",
+      "category": "Familie & Bildung",
+      "statement": "Kleine Schulen auf dem Land sollen auch bei sinkenden Schülerzahlen erhalten bleiben.",
+      "pro": "Kurze Wege stärken Familien und halten Dörfer attraktiv.",
+      "con": "Kleine Standorte brauchen mehr Mittel pro Kind und können weniger Fächer anbieten.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 4,
+      "key": "schulessen",
+      "topic": "Schulessen",
+      "category": "Familie & Bildung",
+      "statement": "Das Land soll ein kostenloses Mittagessen für alle Schulkinder finanzieren.",
+      "pro": "Ermöglicht allen Kindern eine gemeinsame Mahlzeit und entlastet Eltern.",
+      "con": "Eine pauschale Förderung kostet mehr als gezielte Hilfe für bedürftige Familien.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 5,
+      "key": "u27",
+      "topic": "U27-Ticket",
+      "category": "Mobilität",
+      "statement": "Das Land soll Menschen unter 27 ein kostenloses Deutschlandticket finanzieren.",
+      "pro": "Junge Menschen erreichen Ausbildung und Freizeitangebote leichter.",
+      "con": "Die Finanzierung konkurriert mit zusätzlichen Verbindungen und besseren Taktzeiten.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [
+        {
+          "party": "Die Grünen",
+          "position": 1,
+          "note": "Green programme preamble: free U27 Deutschlandticket.",
+          "url": "https://gruene-mv.de/landtagswahl-2026-2/wahlprogramm-2026-1/"
+        }
+      ],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 6,
+      "key": "bus",
+      "topic": "Busverbindungen",
+      "category": "Mobilität",
+      "statement": "Auch wenig genutzte Busverbindungen auf dem Land sollen mit Landesmitteln erhalten werden.",
+      "pro": "Menschen ohne Auto bleiben mobil und erreichen wichtige Einrichtungen.",
+      "con": "Bei geringer Auslastung können Rufbusse oder andere Angebote günstiger sein.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 7,
+      "key": "bahn",
+      "topic": "Bahnstrecken",
+      "category": "Mobilität",
+      "statement": "Das Land soll stillgelegte Bahnstrecken reaktivieren, auch wenn dafür hohe Zuschüsse nötig sind.",
+      "pro": "Schienenverkehr kann Orte verbinden und Straßen entlasten.",
+      "con": "Bau und Betrieb können bei geringer Nachfrage teurer sein als gute Busangebote.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 8,
+      "key": "krankenhaus",
+      "topic": "Krankenhäuser",
+      "category": "Gesundheit",
+      "statement": "Wohnortnahe Krankenhausstandorte sollen auch bei finanziellen Verlusten erhalten bleiben.",
+      "pro": "Kurze Wege erleichtern Notfallversorgung und Besuche.",
+      "con": "Eine Bündelung kann Fachpersonal und Ausstattung effizienter nutzen.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 9,
+      "key": "landarzt",
+      "topic": "Landarztförderung",
+      "category": "Gesundheit",
+      "statement": "Medizinstudienplätze sollen stärker an eine spätere Tätigkeit in unterversorgten Regionen gebunden werden.",
+      "pro": "Eine Bindung kann langfristig ärztliche Versorgung auf dem Land sichern.",
+      "con": "Sie schränkt die spätere Berufswahl ein und wirkt erst nach langer Ausbildungszeit.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 10,
+      "key": "pflege",
+      "topic": "Pflegekosten",
+      "category": "Gesundheit",
+      "statement": "Das Land soll mehr Investitionskosten von Pflegeeinrichtungen übernehmen, um Bewohner zu entlasten.",
+      "pro": "Pflegebedürftige und Angehörige müssen weniger selbst zahlen.",
+      "con": "Höhere Landesausgaben fehlen an anderer Stelle und lösen den Personalmangel nicht.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 11,
+      "key": "tariftreue",
+      "topic": "Tariftreue",
+      "category": "Arbeit & Wirtschaft",
+      "statement": "Öffentliche Aufträge sollen nur an Unternehmen gehen, die Tariflöhne oder tarifgleiche Löhne zahlen.",
+      "pro": "Schützt Löhne und verhindert Wettbewerb durch besonders niedrige Personalkosten.",
+      "con": "Kontrollen erhöhen Verwaltungsaufwand; weniger Anbieter können Aufträge verteuern.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [
+        {
+          "party": "SPD",
+          "position": 1,
+          "note": "SPD overview, section I.2: public contracts conditional on collectively agreed or equivalent wages.",
+          "url": "https://spd-mv.de/wahlen/landtagswahl-2026/regierungsprogramm-2026-2031"
+        }
+      ],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 12,
+      "key": "foerderung",
+      "topic": "Industrieförderung",
+      "category": "Arbeit & Wirtschaft",
+      "statement": "Das Land soll gezielt öffentliche Mittel in die Ansiedlung und den Erhalt wichtiger Industriebetriebe investieren.",
+      "pro": "Kann Arbeitsplätze und regionale Lieferketten sichern.",
+      "con": "Fördergelder können an Unternehmen gehen, die langfristig nicht wettbewerbsfähig sind.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 13,
+      "key": "wohnen",
+      "topic": "Bezahlbarer Wohnraum",
+      "category": "Wohnen & Tourismus",
+      "statement": "Das Land soll mehr Mittel für kommunalen und gemeinnützigen Wohnungsbau bereitstellen.",
+      "pro": "Schafft langfristig bezahlbare Wohnungen in angespannten Märkten.",
+      "con": "Neubau benötigt Zeit und Grundstücke; öffentliche Mittel tragen Kostenrisiken.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 14,
+      "key": "ferienwohnungen",
+      "topic": "Ferienwohnungen",
+      "category": "Wohnen & Tourismus",
+      "statement": "Kommunen sollen die Umwandlung von Dauerwohnungen in Ferienwohnungen stärker begrenzen dürfen.",
+      "pro": "Hält Wohnraum für Einheimische und Beschäftigte verfügbar.",
+      "con": "Beschränkt Eigentümer und kann touristische Einnahmen verringern.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 15,
+      "key": "wind",
+      "topic": "Windenergie",
+      "category": "Energie & Natur",
+      "statement": "Das Land soll den Ausbau von Windenergie durch schnellere Genehmigungsverfahren beschleunigen.",
+      "pro": "Zusätzlicher erneuerbarer Strom kann regionale Wertschöpfung und Versorgung stärken.",
+      "con": "Schnellere Verfahren können Beteiligung und Prüfung von Landschafts- und Naturschutzkonflikten erschweren.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [
+        {
+          "party": "Die Grünen",
+          "position": 1,
+          "note": "Green climate chapter: accelerate wind and solar expansion with streamlined digital procedures.",
+          "url": "https://gruene-mv.de/landtagswahl-2026-2/wahlprogramm-2026-1/"
+        }
+      ],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 16,
+      "key": "strom",
+      "topic": "Regionale Stromvorteile",
+      "category": "Energie & Natur",
+      "statement": "Menschen in der Nähe von Wind- und Solarparks sollen finanziell durch günstigere Stromtarife profitieren.",
+      "pro": "Beteiligung kann Akzeptanz erhöhen und Erträge vor Ort halten.",
+      "con": "Vergünstigungen müssen finanziert werden und schaffen Unterschiede zwischen Wohnorten.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [
+        {
+          "party": "Die Grünen",
+          "position": 1,
+          "note": "Green programme preamble: cheaper energy for residents near wind and solar installations.",
+          "url": "https://gruene-mv.de/landtagswahl-2026-2/wahlprogramm-2026-1/"
+        }
+      ],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 17,
+      "key": "moore",
+      "topic": "Moorrenaturierung",
+      "category": "Energie & Natur",
+      "statement": "Das Land soll die Wiedervernässung entwässerter Moore stärker fördern, auch wenn landwirtschaftliche Flächen anders genutzt werden müssen.",
+      "pro": "Kann Treibhausgasemissionen senken und Lebensräume schützen.",
+      "con": "Betriebe benötigen neue Anbaumethoden, Absatzmärkte und Ausgleich für Umstellungskosten.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 18,
+      "key": "ostsee",
+      "topic": "Ostseeschutz",
+      "category": "Energie & Natur",
+      "statement": "Zum Schutz der Ostsee sollen schädliche Fischereimethoden und Nährstoffeinträge stärker begrenzt werden.",
+      "pro": "Gesündere Ökosysteme sichern langfristig Natur, Fischbestände und Tourismus.",
+      "con": "Neue Auflagen können Fischerei und Landwirtschaft kurzfristig wirtschaftlich belasten.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 19,
+      "key": "integration",
+      "topic": "Sprache und Integration",
+      "category": "Migration & Zusammenleben",
+      "statement": "Das Land soll Sprach- und Integrationsangebote auch für Menschen mit noch ungeklärtem Aufenthaltsstatus ausbauen.",
+      "pro": "Frühe Sprachkenntnisse erleichtern Alltag und spätere Beschäftigung.",
+      "con": "Begrenzte Mittel werden auch für Menschen eingesetzt, die das Land wieder verlassen müssen.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 20,
+      "key": "rueckfuehrung",
+      "topic": "Rückführungen",
+      "category": "Migration & Zusammenleben",
+      "statement": "Das Land soll mehr Personal für die Rückführung von Menschen ohne Bleiberecht bereitstellen.",
+      "pro": "Kann rechtskräftige Entscheidungen schneller umsetzen und Behörden entlasten.",
+      "con": "Zusätzliches Personal ist teuer; fehlende Dokumente oder Aufnahmebereitschaft können Rückführungen weiter verhindern.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [],
+      "status": "draft-wording; alignment review pending"
+    },
+    {
+      "id": 21,
+      "key": "polizei",
+      "topic": "Videoüberwachung",
+      "category": "Sicherheit",
+      "statement": "An Orten mit wiederholt schweren Straftaten soll die Polizei häufiger Videoüberwachung einsetzen dürfen.",
+      "pro": "Aufzeichnungen können Ermittlungen unterstützen und das Sicherheitsgefühl stärken.",
+      "con": "Erfasst auch Unbeteiligte und kann Kriminalität in andere Bereiche verlagern.",
+      "language": "de",
+      "en": null,
+      "positions": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "evidence": [],
+      "status": "draft-wording; alignment review pending"
+    }
+  ]
+}
