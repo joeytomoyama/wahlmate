@@ -22,6 +22,8 @@ for(const edition of Object.keys(editionsV1)){
     const a=app(hash);
     assert.equal(a.read('view'),'results');assert.equal(a.read('edition'),edition);assert.equal(a.read('language'),language);
     assert.ok(a.nodes.get('#app').innerHTML.includes('id="share-results"'));
+    assert.ok(a.nodes.get('#app').innerHTML.includes('aria-label="common ground – home"'));
+    assert.ok(!a.nodes.get('#app').innerHTML.includes('id="about"'));
     assert.equal(a.read('JSON.stringify(answers)'),JSON.stringify(answers));
     if(edition==='mv'){
       assert.ok(a.nodes.get('#app').innerHTML.includes('edition-notice'));
