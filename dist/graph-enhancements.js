@@ -33,9 +33,12 @@ function enhanceGraph(svg){
       const detail=document.createElementNS('http://www.w3.org/2000/svg','text');
       detail.classList.add('party-coverage');detail.setAttribute('x','16');detail.setAttribute('y','18');
       detail.textContent=coverage[name];node.append(detail);
-      const score=document.createElementNS('http://www.w3.org/2000/svg','text');
-      score.classList.add('party-score');score.setAttribute('x','285');score.setAttribute('y','-3');score.setAttribute('text-anchor','end');
-      score.textContent=scores[name];score.style.fill=label?.getAttribute('fill')||'currentColor';node.append(score);
+      const nameSpan=document.createElementNS('http://www.w3.org/2000/svg','tspan');
+      nameSpan.textContent=name;
+      const score=document.createElementNS('http://www.w3.org/2000/svg','tspan');
+      score.classList.add('party-score');score.setAttribute('dx','10');
+      score.textContent=scores[name];score.style.fill=label.getAttribute('fill')||'currentColor';
+      label.textContent='';label.append(nameSpan,score);
     }
     node.parentNode.insertBefore(wrapper,node);wrapper.append(hit,node);
     const enter=node.onmouseenter,leave=node.onmouseleave,click=node.onclick;
