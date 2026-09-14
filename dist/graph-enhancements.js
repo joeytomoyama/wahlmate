@@ -70,9 +70,10 @@ function enhanceGraph(svg){
     });
     svg.querySelectorAll('.party-node text').forEach(text=>{if(text.getComputedTextLength)partyNatural=Math.max(partyNatural,text.getComputedTextLength());});
     const partyScale=Math.min(1,partyLimit/Math.max(1,partyNatural));
-    const partyWidth=partyNatural*partyScale,graphWidth=Math.min(125,usable*.19);
-    const gap=(usable-topicWidth-partyWidth-graphWidth)/2;
-    const topicX=12+topicWidth+gap,partyX=topicX+graphWidth;
+    const partyWidth=partyNatural*partyScale;
+    const gap=Math.max(12,Math.min(36,(usable-topicWidth-partyWidth)/3));
+    const topicX=12+topicWidth+gap;
+    const partyX=width-12-partyWidth-gap;
     svg.querySelectorAll('[data-node] circle').forEach(circle=>circle.setAttribute('cx',topicX));
     headings[1]?.setAttribute('x',partyX+gap);
     order.forEach((party,index)=>{
