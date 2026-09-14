@@ -3,13 +3,14 @@ import {questions,parties,sources,rank} from './data-v1.js';
 import {berlinQuestions,berlinParties,berlinSources,rankBerlin} from './berlin-data-v1.js';
 import {mvQuestions,mvParties,mvSources,rankMV} from './mv-data-v1.js';
 import * as mv2026 from './mv-data-v2.js';
+import {nationalQuestions,nationalParties,nationalSources,rankNational} from './data-v2.js';
 export const editionsV1 = {
   germany: {questions,parties,sources,rank},
   berlin: {questions:berlinQuestions,parties:berlinParties,sources:berlinSources,rank:rankBerlin},
   mv: {questions:mvQuestions,parties:mvParties,sources:mvSources,rank:rankMV,preview:true}
 };
-export const currentEditions={...editionsV1,mv:{questions:mv2026.mvQuestions,parties:mv2026.mvParties,sources:mv2026.mvSources,rank:mv2026.rankMV,version:2}};
-const versions={'1':editionsV1,'2':{mv:currentEditions.mv}};
+export const currentEditions={germany:{questions:nationalQuestions,parties:nationalParties,sources:nationalSources,rank:rankNational,version:2},berlin:editionsV1.berlin,mv:{questions:mv2026.mvQuestions,parties:mv2026.mvParties,sources:mv2026.mvSources,rank:mv2026.rankMV,version:2}};
+const versions={'1':editionsV1,'2':{germany:currentEditions.germany,mv:currentEditions.mv}};
 export function encodeResult(edition, answers, language='de',version=edition==='mv'?2:1) {
   const registry=Object.hasOwn(versions,String(version))?versions[String(version)]:null;
   const data=registry&&Object.hasOwn(registry,edition)?registry[edition]:null;

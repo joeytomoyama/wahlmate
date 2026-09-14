@@ -2,8 +2,8 @@ import{questions as germanyQuestions,parties as germanyParties,sources as german
 import './header-controls.js';
 import {encodeResult,decodeResult,currentEditions} from './share-results.js';
 import {renderMVMethod} from './mv-method.js';
-let shareLinkError=false,datasetVersion=1;
-const root=document.querySelector('#app');let edition='germany',activeQuestions=germanyQuestions,activeParties=germanyParties,activeSources=germanySources,rank=rankGermany,questions=activeQuestions,parties=activeParties,sources=activeSources,answers=Array(activeQuestions.length).fill(null),index=0,view='quiz',language='de',pinned=null,pinnedParty=null,d3;
+let shareLinkError=false,datasetVersion=2;
+const root=document.querySelector('#app');let edition='germany',activeQuestions=currentEditions.germany.questions,activeParties=currentEditions.germany.parties,activeSources=currentEditions.germany.sources,rank=currentEditions.germany.rank,questions=activeQuestions,parties=activeParties,sources=activeSources,answers=Array(activeQuestions.length).fill(null),index=0,view='quiz',language='de',pinned=null,pinnedParty=null,d3;
 let theme='light';try{theme=localStorage.getItem('common-ground-theme')==='dark'?'dark':'light'}catch{}
 document.documentElement.dataset.theme=theme;
 const themeLabel=()=>language==='de'?(theme==='dark'?'Hellen Modus aktivieren':'Dunklen Modus aktivieren'):(theme==='dark'?'Switch to light mode':'Switch to dark mode');

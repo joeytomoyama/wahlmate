@@ -45,6 +45,12 @@ for(const hash of ['#v=3&edition=mv&answers='+ 'y'.repeat(21),'#v=2&edition=berl
 assert.equal(decodeResult(''),null);
 assert.throws(()=>encodeResult('mv',Array(21).fill(null)));
 const mv=currentEditions.mv;
+assert.equal(currentEditions.germany.questions.length,21);
+assert.equal(currentEditions.germany.questions[9].key,'cost-of-living');
+assert.equal(currentEditions.germany.questions[18].key,'internal-security');
+assert.equal(currentEditions.germany.questions[19].key,'skilled-immigration');
+assert.equal(currentEditions.germany.questions[20].key,'bureaucracy');
+for(const q of currentEditions.germany.questions)assert.equal(q.positions.length,7);
 assert.equal(mv.questions.length,21);
 assert.equal(mv.questions.flatMap(q=>q.positions).filter(p=>p!==null).length,125);
 assert.equal(new Set(mv.questions.map(q=>q.key)).size,21);
