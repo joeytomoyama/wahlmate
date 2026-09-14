@@ -1,3 +1,4 @@
+import {argumentText} from '../dist/arguments.js';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
@@ -10,7 +11,7 @@ function app(hash=''){
   const buttons=[-1,0,1].map(answer=>({...element(),dataset:{answer}}));
   const document={documentElement:{dataset:{}},querySelector(s){if(s==='.network')return null;if(!nodes.has(s))nodes.set(s,element());return nodes.get(s)},querySelectorAll(s){return s==='[data-answer]'?buttons:[]},createElement:element};
   const de=editionsV1.germany,be=editionsV1.berlin;
-  const context=vm.createContext({document,window:{addEventListener(){}},location:{hash,href:'https://example.com/'+hash,pathname:'/',search:''},history:{replaceState(){}},localStorage:{getItem(){return null}},URL,btoa,atob,encodeResult,decodeResult,editionsV1,currentEditions,renderMVMethod,germanyQuestions:de.questions,germanyParties:de.parties,germanySources:de.sources,rankGermany:de.rank,berlinQuestions:be.questions,berlinParties:be.parties,berlinSources:be.sources,rankBerlin:be.rank});
+  const context=vm.createContext({document,window:{addEventListener(){}},location:{hash,href:'https://example.com/'+hash,pathname:'/',search:''},history:{replaceState(){}},localStorage:{getItem(){return null}},URL,btoa,atob,argumentText,encodeResult,decodeResult,editionsV1,currentEditions,renderMVMethod,germanyQuestions:de.questions,germanyParties:de.parties,germanySources:de.sources,rankGermany:de.rank,berlinQuestions:be.questions,berlinParties:be.parties,berlinSources:be.sources,rankBerlin:be.rank});
   vm.runInContext(source,context);
   return {nodes,buttons,read:expr=>vm.runInContext(expr,context)};
 }
@@ -22,7 +23,7 @@ for(const edition of Object.keys(editionsV1)){
     const a=app(hash);
     assert.equal(a.read('view'),'results');assert.equal(a.read('edition'),edition);assert.equal(a.read('language'),language);
     assert.ok(a.nodes.get('#app').innerHTML.includes('id="share-results"'));
-    assert.ok(a.nodes.get('#app').innerHTML.includes('aria-label="common ground – home"'));
+    assert.ok(a.nodes.get('#app').innerHTML.includes('aria-label="WahlMate – home"'));
     assert.ok(!a.nodes.get('#app').innerHTML.includes('id="about"'));
     assert.equal(a.read('JSON.stringify(answers)'),JSON.stringify(answers));
     if(edition==='mv'){
