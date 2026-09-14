@@ -40,6 +40,9 @@
 #edition-select { max-width: 100%; white-space: normal; text-align: left; }
 .edition-menu { min-width: min(340px, calc(100vw - 40px)); max-width: calc(100vw - 40px); }
 .network .party-node .party-coverage { font-size: 11px; font-weight: 500; fill: var(--muted); }
+.network .party-node .party-score { font-size: 22px; font-weight: 800; font-family: Manrope,sans-serif; }
+.button-icon{width:18px;height:18px;display:inline-block;vertical-align:-4px;margin-right:8px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.result-actions .primary{display:inline-flex;align-items:center;justify-content:center}
 .source-topic { padding: 12px 0; border-top: 1px solid var(--line); }
 .source-topic ul { padding-left: 20px; }
 .source-topic li { margin: 9px 0; line-height: 1.7; }

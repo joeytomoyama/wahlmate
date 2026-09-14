@@ -5,6 +5,7 @@ import vm from 'node:vm';
 class Element {
   constructor(tag){this.tag=tag;this.children=[];this.dataset={};this.attributes={};this.style={};this.textContent='';this.classes=new Set();this.classList={add:c=>this.classes.add(c)};}
   setAttribute(k,v){this.attributes[k]=String(v);}
+  getAttribute(k){return this.attributes[k]??null;}
   removeAttribute(k){delete this.attributes[k];if(k==='data-party')delete this.dataset.party;}
   append(...nodes){for(const n of nodes){if(n.parentNode)n.parentNode.children=n.parentNode.children.filter(c=>c!==n);n.parentNode=this;this.children.push(n);}}
   appendChild(n){this.append(n);}

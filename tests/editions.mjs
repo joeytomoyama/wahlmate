@@ -10,7 +10,7 @@ function app(hash=''){
   const buttons=[-1,0,1].map(answer=>({...element(),dataset:{answer}}));
   const document={documentElement:{dataset:{}},querySelector(s){if(s==='.network')return null;if(!nodes.has(s))nodes.set(s,element());return nodes.get(s)},querySelectorAll(s){return s==='[data-answer]'?buttons:[]},createElement:element};
   const de=editionsV1.germany,be=editionsV1.berlin;
-  const context=vm.createContext({document,window:{addEventListener(){}},location:{hash,href:'https://example.com/'+hash,pathname:'/',search:''},history:{replaceState(){}},localStorage:{getItem(){return null}},URL,encodeResult,decodeResult,editionsV1,currentEditions,renderMVMethod,germanyQuestions:de.questions,germanyParties:de.parties,germanySources:de.sources,rankGermany:de.rank,berlinQuestions:be.questions,berlinParties:be.parties,berlinSources:be.sources,rankBerlin:be.rank});
+  const context=vm.createContext({document,window:{addEventListener(){}},location:{hash,href:'https://example.com/'+hash,pathname:'/',search:''},history:{replaceState(){}},localStorage:{getItem(){return null}},URL,btoa,atob,encodeResult,decodeResult,editionsV1,currentEditions,renderMVMethod,germanyQuestions:de.questions,germanyParties:de.parties,germanySources:de.sources,rankGermany:de.rank,berlinQuestions:be.questions,berlinParties:be.parties,berlinSources:be.sources,rankBerlin:be.rank});
   vm.runInContext(source,context);
   return {nodes,buttons,read:expr=>vm.runInContext(expr,context)};
 }
@@ -63,7 +63,7 @@ for(const q of mv.questions){
 }
 for(const language of ['de','en'])for(const answers of [Array(21).fill(1),Array(21).fill(-1),Array(21).fill(0),Array.from({length:21},(_,i)=>[-1,0,1][i%3])]){
   const hash=encodeResult('mv',answers,language),result=decodeResult(hash),a=app(hash);
-  assert.equal(result.version,2);assert.equal(a.read('datasetVersion'),2);
+  assert.equal(result.version,3);assert.equal(a.read('datasetVersion'),3);
   assert.deepEqual(result.answers,answers);assert.equal(a.read('view'),'results');
   assert.ok(!a.nodes.get('#app').innerHTML.includes('6 of 147'));
   assert.ok(!a.nodes.get('#app').innerHTML.includes('6 von 147'));
@@ -86,5 +86,11 @@ const oldMV=app(encodeResult('mv',Array(21).fill(1),'de',1));
 assert.equal(oldMV.read('datasetVersion'),1);
 assert.equal(decodeResult(oldMV.read('encodeResult(edition,answers,language,datasetVersion)')).version,1);
 oldMV.nodes.get('#edition-menu').onclick({target:{closest:()=>({dataset:{edition:'mv'}})}});
-assert.equal(oldMV.read('datasetVersion'),2);assert.equal(oldMV.read('count()'),0);
-console.log('PASS: three editions, bilingual full quiz flow, review, switching, v1/v2 links, MV scoring, coverage and 125 sourced positions.');
+assert.equal(oldMV.read('datasetVersion'),3);assert.equal(oldMV.read('count()'),0);
+for(const edition of ['germany','berlin','mv']){
+  const compact=encodeResult(edition,Array.from({length:21},(_,i)=>[-1,0,1][i%3]),'de');
+  assert.match(compact,/^#v=3&e=(germany|berlin|mv)&r=[A-Za-z0-9_-]+&l=de$/);
+  assert.ok(compact.length<55);assert.ok(!compact.includes('answers='));assert.deepEqual(decodeResult(compact).answers,Array.from({length:21},(_,i)=>[-1,0,1][i%3]));
+}
+for(const hash of ['#v=3&e=mv&r=00000000&l=de','#v=3&e=mv&r=AA&l=de','#v=3&e=mv&r=________&l=de','#v=3&e=mv&r=!!!!!!!!&l=de'])assert.throws(()=>decodeResult(hash));
+console.log('PASS: three editions, bilingual full quiz flow, review, switching, v1/v3 links, compact sharing, MV scoring, coverage and 125 sourced positions.');

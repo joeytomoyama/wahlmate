@@ -30,7 +30,10 @@ function enhanceGraph(svg){
       if(name.length>22)label.style.fontSize='12px';
       const detail=document.createElementNS('http://www.w3.org/2000/svg','text');
       detail.classList.add('party-coverage');detail.setAttribute('x','16');detail.setAttribute('y','18');
-      detail.textContent=`${scores[name]} · ${coverage[name]}`;node.append(detail);
+      detail.textContent=coverage[name];node.append(detail);
+      const score=document.createElementNS('http://www.w3.org/2000/svg','text');
+      score.classList.add('party-score');score.setAttribute('x','16');score.setAttribute('y','-22');
+      score.textContent=scores[name];score.style.fill=label?.getAttribute('fill')||'currentColor';node.append(score);
     }
     node.parentNode.insertBefore(wrapper,node);wrapper.append(hit,node);
     const enter=node.onmouseenter,leave=node.onmouseleave,click=node.onclick;
