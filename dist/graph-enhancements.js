@@ -9,9 +9,8 @@ function enhanceGraph(svg){
   svg.querySelectorAll('[data-node]').forEach(node=>{
     const text=node.querySelector('text'); if(!text)return;
     const full=text.textContent.replace(/^\d+\s+/, '');
-    text.textContent=full.length>20?full.slice(0,19)+'…':full;
-    // Keep enlarged labels clear of the vertex even with wide letters.
-    if(text.getComputedTextLength){while(text.getComputedTextLength()>185&&text.textContent.length>2)text.textContent=text.textContent.slice(0,-2)+'…';}
+    text.dataset.fullLabel=full;
+    text.textContent=full;
     const title=document.createElementNS('http://www.w3.org/2000/svg','title');title.textContent=full;node.prepend(title);
   });
   const sortScore=node=>{const value=parseFloat(scores[node.querySelector('text').textContent.trim()]);return Number.isFinite(value)?value:-1};
@@ -54,18 +53,35 @@ function enhanceGraph(svg){
     wrapper.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();wrapper.onclick()}};
     svg.querySelectorAll(`.edge[data-p="${oldIndex}"]`).forEach(edge=>{const y=+edge.dataset.q;const target=90+displayIndex*85;edge.setAttribute('d',`M215,${58+y*34}C275,${58+y*34} 280,${target} 340,${target}`)});
   });
-  // Fit the visible labels, excluding the oversized invisible hover rectangles.
+  // Lay out horizontally in screen pixels; row spacing and height stay fixed.
   const fit=()=>{
-    let right=370;
-    svg.querySelectorAll('.party-node text').forEach(label=>{
-      if(!label.getBBox)return;
-      const box=label.getBBox();right=Math.max(right,340+box.x+box.width);
+    const width=svg.getBoundingClientRect?.().width||svg.clientWidth||0;
+    if(!width)return;
+    svg.style.height=`${graphHeight}px`;
+    svg.setAttribute('viewBox',`0 0 ${width} ${graphHeight}`);
+    const topicX=width*.43,partyX=width*.62;
+    const topicSize=Math.min(18,Math.max(12,width/35));
+    svg.querySelectorAll('[data-node]').forEach(node=>{
+      node.querySelector('circle')?.setAttribute('cx',topicX);
+      const text=node.querySelector('text');if(!text)return;
+      text.style.fontSize=`${topicSize}px`;
+      text.textContent=text.dataset.fullLabel;
+      if(text.getComputedTextLength){while(text.getComputedTextLength()>topicX-28&&text.textContent.length>2)text.textContent=text.textContent.slice(0,-2)+'…';}
     });
-    if(right>370)svg.setAttribute('viewBox',`0 0 ${Math.ceil(right+12)} ${graphHeight}`);
-    const renderedWidth=svg.getBoundingClientRect?.().width||svg.clientWidth||0;
-    const viewWidth=svg.viewBox?.baseVal?.width||Number(svg.getAttribute('viewBox').split(/\s+/)[2])||640;
-    const topicSize=renderedWidth>viewWidth?18/(renderedWidth/viewWidth):18;
-    svg.querySelectorAll('[data-node] text').forEach(text=>text.style.fontSize=`${topicSize}px`);
+    headings[1]?.setAttribute('x',partyX+12);
+    order.forEach((party,index)=>{
+      const wrapper=svg.querySelector(`[data-party="${party}"]`);if(!wrapper)return;
+      const targetY=90+index*85;
+      wrapper.setAttribute('transform',`translate(${partyX} ${targetY})`);
+      wrapper.querySelector('rect')?.setAttribute('width',width-partyX+20);
+      const node=wrapper.querySelector('.party-node');
+      node.setAttribute('transform','translate(0 0)');
+      if(node.getBBox){const box=node.getBBox();const scale=Math.min(1,(width-partyX-12)/Math.max(1,box.x+box.width));node.setAttribute('transform',`scale(${scale})`);}
+      svg.querySelectorAll(`.edge[data-p="${party}"]`).forEach(edge=>{
+        const y=58+Number(edge.dataset.q)*34,mid=(topicX+partyX)/2;
+        edge.setAttribute('d',`M${topicX},${y}C${mid},${y} ${mid},${targetY} ${partyX},${targetY}`);
+      });
+    });
   };
   fit();
   document.fonts?.ready.then(fit);
