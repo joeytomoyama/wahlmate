@@ -16,13 +16,16 @@ function enhanceGraph(svg){
   });
   const sortScore=node=>{const value=parseFloat(scores[node.querySelector('text').textContent.trim()]);return Number.isFinite(value)?value:-1};
   const order=[...svg.querySelectorAll('[data-party]')].sort((a,b)=>sortScore(b)-sortScore(a)||+a.dataset.party-+b.dataset.party).map(n=>+n.dataset.party);
-  svg.setAttribute('viewBox',`0 0 800 ${Math.max(680,90+svg.querySelectorAll('[data-node]').length*34)}`);
+  const graphHeight=Math.max(680,90+svg.querySelectorAll('[data-node]').length*34);
+  svg.setAttribute('viewBox',`0 0 640 ${graphHeight}`);
+  const headings=svg.querySelectorAll(':scope > text');
+  headings[1]?.setAttribute('x','352');
   order.forEach((oldIndex,displayIndex)=>{
     const node=svg.querySelector(`[data-party="${oldIndex}"]`);if(!node)return;
     const wrapper=document.createElementNS('http://www.w3.org/2000/svg','g');
     wrapper.classList.add('party-hit');wrapper.dataset.party=oldIndex;
     wrapper.setAttribute('tabindex','0');wrapper.setAttribute('role','button');
-    wrapper.setAttribute('transform',`translate(485 ${90+displayIndex*85})`);
+    wrapper.setAttribute('transform',`translate(340 ${90+displayIndex*85})`);
     const hit=document.createElementNS('http://www.w3.org/2000/svg','rect');
     hit.setAttribute('x','-28');hit.setAttribute('y','-31');hit.setAttribute('width','330');hit.setAttribute('height','62');hit.setAttribute('fill','transparent');
     node.removeAttribute('data-party');node.removeAttribute('transform');node.setAttribute('transform','translate(0 0)');
@@ -49,8 +52,23 @@ function enhanceGraph(svg){
     wrapper.onmouseenter=()=>enter?.();wrapper.onmouseleave=()=>leave?.();wrapper.onclick=()=>click?.();
     wrapper.onfocus=()=>enter?.();wrapper.onblur=()=>leave?.();
     wrapper.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();wrapper.onclick()}};
-    svg.querySelectorAll(`.edge[data-p="${oldIndex}"]`).forEach(edge=>{const y=+edge.dataset.q;const target=90+displayIndex*85;edge.setAttribute('d',`M215,${58+y*34}C350,${58+y*34} 350,${target} 485,${target}`)});
+    svg.querySelectorAll(`.edge[data-p="${oldIndex}"]`).forEach(edge=>{const y=+edge.dataset.q;const target=90+displayIndex*85;edge.setAttribute('d',`M215,${58+y*34}C275,${58+y*34} 280,${target} 340,${target}`)});
   });
+  // Fit the visible labels, excluding the oversized invisible hover rectangles.
+  const fit=()=>{
+    let right=370;
+    svg.querySelectorAll('.party-node text').forEach(label=>{
+      if(!label.getBBox)return;
+      const box=label.getBBox();right=Math.max(right,340+box.x+box.width);
+    });
+    if(right>370)svg.setAttribute('viewBox',`0 0 ${Math.ceil(right+12)} ${graphHeight}`);
+  };
+  fit();
+  document.fonts?.ready.then(fit);
+  if(typeof ResizeObserver!=='undefined'){
+    const resize=new ResizeObserver(()=>{if(!svg.isConnected){resize.disconnect();return;}fit()});
+    resize.observe(svg);
+  }
 }
 const observer=new MutationObserver(()=>enhanceGraph(document.querySelector('.network')));
 observer.observe(document.body,{childList:true,subtree:true});

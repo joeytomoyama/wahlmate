@@ -24,9 +24,9 @@ const document={head:new Element('head'),body:new Element('body'),createElement:
 vm.runInNewContext(fs.readFileSync(new URL('../dist/graph-enhancements.js',import.meta.url),'utf8'),{document,MutationObserver:class{observe(){}}});
 const wrappers=svg.querySelectorAll('[data-party]');
 assert.equal(wrappers.length,3);
-assert.equal(wrappers.find(w=>String(w.dataset.party)==='2').attributes.transform,'translate(485 90)');
-assert.equal(wrappers.find(w=>String(w.dataset.party)==='1').attributes.transform,'translate(485 175)');
-assert.equal(wrappers.find(w=>String(w.dataset.party)==='0').attributes.transform,'translate(485 260)');
+assert.equal(wrappers.find(w=>String(w.dataset.party)==='2').attributes.transform,'translate(340 90)');
+assert.equal(wrappers.find(w=>String(w.dataset.party)==='1').attributes.transform,'translate(340 175)');
+assert.equal(wrappers.find(w=>String(w.dataset.party)==='0').attributes.transform,'translate(340 260)');
 for(const wrapper of wrappers){assert.ok(wrapper.attributes['aria-label'].includes('compared'));const hit=wrapper.querySelector('rect');assert.equal(hit.attributes.width,'330');assert.equal(hit.attributes.height,'62');assert.equal(hit.attributes['pointer-events'],'all');wrapper.onmouseenter();wrapper.onmouseleave();wrapper.onfocus();wrapper.onblur();wrapper.onkeydown({key:'Enter',preventDefault(){}});assert.ok(wrapper.querySelector('.party-coverage'));}
 assert.equal(enters,6);assert.equal(leaves,6);assert.equal(clicks,3);
 assert.ok(text.textContent.endsWith('…'));assert.ok(topic.querySelector('title').textContent.includes('Themenname'));
