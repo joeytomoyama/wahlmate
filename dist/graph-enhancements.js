@@ -59,7 +59,12 @@ function enhanceGraph(svg){
     if(!width)return;
     svg.style.height=`${graphHeight}px`;
     svg.setAttribute('viewBox',`0 0 ${width} ${graphHeight}`);
-    const usable=width-24,topicLimit=usable*.40,partyLimit=usable*.35;
+    // Keep a visible central network on narrow screens by giving the topic and
+    // party columns a smaller share of the width before expanding the center.
+    const usable=width-24,
+      narrow=width<700,
+      topicLimit=usable*(narrow?.28:.40),
+      partyLimit=usable*(narrow?.28:.35);
     let topicWidth=0,partyNatural=0;
     const topicSize=Math.min(18,Math.max(12,width/35));
     svg.querySelectorAll('[data-node]').forEach(node=>{
@@ -71,7 +76,7 @@ function enhanceGraph(svg){
     svg.querySelectorAll('.party-node text').forEach(text=>{if(text.getComputedTextLength)partyNatural=Math.max(partyNatural,text.getComputedTextLength());});
     const partyScale=Math.min(1,partyLimit/Math.max(1,partyNatural));
     const partyWidth=partyNatural*partyScale;
-    const gap=Math.max(12,Math.min(36,(usable-topicWidth-partyWidth)/3));
+    const gap=narrow?12:Math.max(12,Math.min(36,(usable-topicWidth-partyWidth)/3));
     const topicX=12+topicWidth+gap;
     const partyX=width-12-partyWidth-gap;
     svg.querySelectorAll('[data-node] circle').forEach(circle=>circle.setAttribute('cx',topicX));
