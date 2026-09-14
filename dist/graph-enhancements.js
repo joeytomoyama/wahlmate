@@ -59,24 +59,30 @@ function enhanceGraph(svg){
     if(!width)return;
     svg.style.height=`${graphHeight}px`;
     svg.setAttribute('viewBox',`0 0 ${width} ${graphHeight}`);
-    const topicX=width*.43,partyX=width*.62;
+    const usable=width-24,topicLimit=usable*.40,partyLimit=usable*.35;
+    let topicWidth=0,partyNatural=0;
     const topicSize=Math.min(18,Math.max(12,width/35));
     svg.querySelectorAll('[data-node]').forEach(node=>{
-      node.querySelector('circle')?.setAttribute('cx',topicX);
       const text=node.querySelector('text');if(!text)return;
       text.style.fontSize=`${topicSize}px`;
       text.textContent=text.dataset.fullLabel;
-      if(text.getComputedTextLength){while(text.getComputedTextLength()>topicX-28&&text.textContent.length>2)text.textContent=text.textContent.slice(0,-2)+'…';}
+      if(text.getComputedTextLength){while(text.getComputedTextLength()>topicLimit&&text.textContent.length>2)text.textContent=text.textContent.slice(0,-2)+'…';topicWidth=Math.max(topicWidth,text.getComputedTextLength());}
     });
-    headings[1]?.setAttribute('x',partyX+12);
+    svg.querySelectorAll('.party-node text').forEach(text=>{if(text.getComputedTextLength)partyNatural=Math.max(partyNatural,text.getComputedTextLength());});
+    const partyScale=Math.min(1,partyLimit/Math.max(1,partyNatural));
+    const partyWidth=partyNatural*partyScale,graphWidth=Math.min(125,usable*.19);
+    const gap=(usable-topicWidth-partyWidth-graphWidth)/2;
+    const topicX=12+topicWidth+gap,partyX=topicX+graphWidth;
+    svg.querySelectorAll('[data-node] circle').forEach(circle=>circle.setAttribute('cx',topicX));
+    headings[1]?.setAttribute('x',partyX+gap);
     order.forEach((party,index)=>{
       const wrapper=svg.querySelector(`[data-party="${party}"]`);if(!wrapper)return;
       const targetY=90+index*85;
       wrapper.setAttribute('transform',`translate(${partyX} ${targetY})`);
       wrapper.querySelector('rect')?.setAttribute('width',width-partyX+20);
       const node=wrapper.querySelector('.party-node');
-      node.setAttribute('transform','translate(0 0)');
-      if(node.getBBox){const box=node.getBBox();const scale=Math.min(1,(width-partyX-12)/Math.max(1,box.x+box.width));node.setAttribute('transform',`scale(${scale})`);}
+      node.setAttribute('transform',`scale(${partyScale})`);
+      node.querySelectorAll('text').forEach(text=>text.setAttribute('x',gap/partyScale));
       svg.querySelectorAll(`.edge[data-p="${party}"]`).forEach(edge=>{
         const y=58+Number(edge.dataset.q)*34,mid=(topicX+partyX)/2;
         edge.setAttribute('d',`M${topicX},${y}C${mid},${y} ${mid},${targetY} ${partyX},${targetY}`);
