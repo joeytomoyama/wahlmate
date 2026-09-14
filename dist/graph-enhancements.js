@@ -62,6 +62,10 @@ function enhanceGraph(svg){
       const box=label.getBBox();right=Math.max(right,340+box.x+box.width);
     });
     if(right>370)svg.setAttribute('viewBox',`0 0 ${Math.ceil(right+12)} ${graphHeight}`);
+    const renderedWidth=svg.getBoundingClientRect?.().width||svg.clientWidth||0;
+    const viewWidth=svg.viewBox?.baseVal?.width||Number(svg.getAttribute('viewBox').split(/\s+/)[2])||640;
+    const topicSize=renderedWidth>viewWidth?18/(renderedWidth/viewWidth):18;
+    svg.querySelectorAll('[data-node] text').forEach(text=>text.style.fontSize=`${topicSize}px`);
   };
   fit();
   document.fonts?.ready.then(fit);
