@@ -10,11 +10,13 @@ function enhanceGraph(svg){
     const text=node.querySelector('text'); if(!text)return;
     const full=text.textContent.replace(/^\d+\s+/, '');
     text.textContent=full.length>20?full.slice(0,19)+'…':full;
+    // Keep enlarged labels clear of the vertex even with wide letters.
+    if(text.getComputedTextLength){while(text.getComputedTextLength()>185&&text.textContent.length>2)text.textContent=text.textContent.slice(0,-2)+'…';}
     const title=document.createElementNS('http://www.w3.org/2000/svg','title');title.textContent=full;node.prepend(title);
   });
   const sortScore=node=>{const value=parseFloat(scores[node.querySelector('text').textContent.trim()]);return Number.isFinite(value)?value:-1};
   const order=[...svg.querySelectorAll('[data-party]')].sort((a,b)=>sortScore(b)-sortScore(a)||+a.dataset.party-+b.dataset.party).map(n=>+n.dataset.party);
-  svg.setAttribute('viewBox',`0 0 720 ${Math.max(680,90+svg.querySelectorAll('[data-node]').length*34)}`);
+  svg.setAttribute('viewBox',`0 0 800 ${Math.max(680,90+svg.querySelectorAll('[data-node]').length*34)}`);
   order.forEach((oldIndex,displayIndex)=>{
     const node=svg.querySelector(`[data-party="${oldIndex}"]`);if(!node)return;
     const wrapper=document.createElementNS('http://www.w3.org/2000/svg','g');
@@ -22,7 +24,7 @@ function enhanceGraph(svg){
     wrapper.setAttribute('tabindex','0');wrapper.setAttribute('role','button');
     wrapper.setAttribute('transform',`translate(485 ${90+displayIndex*85})`);
     const hit=document.createElementNS('http://www.w3.org/2000/svg','rect');
-    hit.setAttribute('x','-28');hit.setAttribute('y','-31');hit.setAttribute('width','205');hit.setAttribute('height','62');hit.setAttribute('fill','transparent');
+    hit.setAttribute('x','-28');hit.setAttribute('y','-31');hit.setAttribute('width','330');hit.setAttribute('height','62');hit.setAttribute('fill','transparent');
     node.removeAttribute('data-party');node.removeAttribute('transform');node.setAttribute('transform','translate(0 0)');
     const label=node.querySelector('text');const name=label?.textContent.trim();
     if(label&&scores[name]){
@@ -32,7 +34,7 @@ function enhanceGraph(svg){
       detail.classList.add('party-coverage');detail.setAttribute('x','16');detail.setAttribute('y','18');
       detail.textContent=coverage[name];node.append(detail);
       const score=document.createElementNS('http://www.w3.org/2000/svg','text');
-      score.classList.add('party-score');score.setAttribute('x','16');score.setAttribute('y','-22');
+      score.classList.add('party-score');score.setAttribute('x','285');score.setAttribute('y','-3');score.setAttribute('text-anchor','end');
       score.textContent=scores[name];score.style.fill=label?.getAttribute('fill')||'currentColor';node.append(score);
     }
     node.parentNode.insertBefore(wrapper,node);wrapper.append(hit,node);

@@ -27,7 +27,7 @@ assert.equal(wrappers.length,3);
 assert.equal(wrappers.find(w=>String(w.dataset.party)==='2').attributes.transform,'translate(485 90)');
 assert.equal(wrappers.find(w=>String(w.dataset.party)==='1').attributes.transform,'translate(485 175)');
 assert.equal(wrappers.find(w=>String(w.dataset.party)==='0').attributes.transform,'translate(485 260)');
-for(const wrapper of wrappers){assert.ok(wrapper.attributes['aria-label'].includes('compared'));const hit=wrapper.querySelector('rect');assert.equal(hit.attributes.width,'205');assert.equal(hit.attributes.height,'62');assert.equal(hit.attributes['pointer-events'],'all');wrapper.onmouseenter();wrapper.onmouseleave();wrapper.onfocus();wrapper.onblur();wrapper.onkeydown({key:'Enter',preventDefault(){}});assert.ok(wrapper.querySelector('.party-coverage'));}
+for(const wrapper of wrappers){assert.ok(wrapper.attributes['aria-label'].includes('compared'));const hit=wrapper.querySelector('rect');assert.equal(hit.attributes.width,'330');assert.equal(hit.attributes.height,'62');assert.equal(hit.attributes['pointer-events'],'all');wrapper.onmouseenter();wrapper.onmouseleave();wrapper.onfocus();wrapper.onblur();wrapper.onkeydown({key:'Enter',preventDefault(){}});assert.ok(wrapper.querySelector('.party-coverage'));}
 assert.equal(enters,6);assert.equal(leaves,6);assert.equal(clicks,3);
 assert.ok(text.textContent.endsWith('…'));assert.ok(topic.querySelector('title').textContent.includes('Themenname'));
 console.log('PASS: graph sorting (including 0% vs unknown), coverage labels, enlarged hover targets and keyboard handlers.');
