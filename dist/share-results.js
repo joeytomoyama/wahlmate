@@ -19,7 +19,9 @@ export function encodeResult(edition, answers, language='de',version=3) {
   const registry=Object.hasOwn(versions,String(version))?versions[String(version)]:null;
   const data=registry&&Object.hasOwn(registry,edition)?registry[edition]:null;
   if(!data || answers.length!==data.questions.length || !answers.every(a=>[-1,0,1].includes(a))) throw Error('Incomplete result');
-  return version===3?'#'+new URLSearchParams({v:'3',e:edition,r:packAnswers(answers),l:language==='en'?'en':'de'}):'#'+new URLSearchParams({v:String(version),edition,answers:answers.map(a=>a===1?'y':a===-1?'n':'-').join(''),lang:language==='en'?'en':'de'});
+  // Encoding is independent of the question snapshot: old results keep their
+  // original dataset while every newly copied link uses compact answers.
+  return '#'+new URLSearchParams({v:String(version),e:edition,r:packAnswers(answers),l:language==='en'?'en':'de'});
 }
 export function decodeResult(hash) {
   if(!hash || hash==='#') return null;
@@ -28,7 +30,7 @@ export function decodeResult(hash) {
   if(['v','edition','answers','lang','e','r','l'].some(k=>params.getAll(k).length>1)) throw Error('Invalid link');
   const version=params.get('v');
   if(!Object.hasOwn(versions,version)) throw Error('Unsupported version');
-  const compact=version==='3';
+  const compact=params.has('r')||version==='3';
   const edition=compact?params.get('e'):params.get('edition');
   const data=Object.hasOwn(versions[version],edition)?versions[version][edition]:null;
   const encoded=compact?params.get('r')||'':params.get('answers')||'';

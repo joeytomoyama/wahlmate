@@ -80,6 +80,19 @@ for(const language of ['de','en'])for(const answers of [Array(21).fill(1),Array(
   a.nodes.get('#review').onclick();assert.ok(!a.nodes.get('#app').innerHTML.includes('mv-evidence'));
 }
 const onlyKita=Array(21).fill(0);onlyKita[0]=1;
+// Exercise the actual clipboard handler, including the reported fresh national flow.
+for(const hash of ['', '#v=2&edition=germany&answers='+ 'y'.repeat(21)+'&lang=de', '#v=1&edition=mv&answers='+ 'y'.repeat(21)+'&lang=en']){
+  const a=app(hash);
+  if(!hash)for(let i=0;i<21;i++)a.buttons.find(b=>b.dataset.answer===1).onclick();
+  const expected=a.read('JSON.stringify(questions)');
+  a.read('globalThis.copied="";globalThis.navigator={clipboard:{async writeText(text){globalThis.copied=text}}}');
+  await a.nodes.get('#share-results').onclick();
+  const copied=a.read('copied');
+  assert.ok(copied.includes('&r='));assert.ok(!copied.includes('answers='));
+  const restored=decodeResult(new URL(copied).hash);
+  assert.deepEqual(restored.answers,Array(21).fill(1));
+  assert.equal(JSON.stringify(restored.data.questions),expected);
+}
 assert.equal(mv.rank(onlyKita).find(r=>r.party===3).score,null);
 assert.equal(mv.rank(Array(21).fill(1)).find(r=>r.party===3).count,12);
 const oldMV=app(encodeResult('mv',Array(21).fill(1),'de',1));
