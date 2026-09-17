@@ -24,6 +24,8 @@ for(const edition of Object.keys(editionsV1)){
     assert.equal(a.read('view'),'results');assert.equal(a.read('edition'),edition);assert.equal(a.read('language'),language);
     assert.ok(a.nodes.get('#app').innerHTML.includes('id="share-results"'));
     assert.ok(a.nodes.get('#app').innerHTML.includes('aria-label="WahlMate – home"'));
+    assert.ok(a.nodes.get('#app').innerHTML.includes('href="https://github.com/joeytomoyama/wahlmate"'));
+    assert.ok(a.nodes.get('#app').innerHTML.includes('aria-label="Joey Prüssing on GitHub"'));
     assert.ok(!a.nodes.get('#app').innerHTML.includes('id="about"'));
     assert.equal(a.read('JSON.stringify(answers)'),JSON.stringify(answers));
     if(edition==='mv'){
@@ -42,6 +44,16 @@ for(const edition of Object.keys(editionsV1)){
   a.nodes.get('#edition-menu').onclick({target:{closest:()=>({dataset:{edition:'germany'}})}});
   assert.equal(a.read('count()'),0);assert.equal(a.read('edition'),'germany');
 }
+for(const q of currentEditions.berlin.questions){
+  assert.ok(q.en.topic);assert.ok(q.en.category);assert.ok(q.en.statement);
+  assert.notEqual(q.en.statement,q.de.statement);
+}
+const berlinEnglish=app();
+berlinEnglish.nodes.get('#edition-menu').onclick({target:{closest:()=>({dataset:{edition:'berlin'}})}});
+berlinEnglish.nodes.get('#lang-en').onclick();
+assert.ok(berlinEnglish.nodes.get('#app').innerHTML.includes('Berlin should introduce a state-level rent cap.'));
+assert.ok(berlinEnglish.nodes.get('#app').innerHTML.includes('A rent cap could protect existing tenants'));
+assert.ok(!berlinEnglish.nodes.get('#app').innerHTML.includes('Berlin sollte einen landeseigenen Mietendeckel einführen.'));
 for(const q of editionsV1.mv.questions){for(const key of ['topic','category','statement','pro','con']){assert.ok(q[key]);assert.ok(q.de[key]);}assert.equal(q.positions.length,7);}
 assert.equal(editionsV1.mv.questions.flatMap(q=>q.positions).filter(v=>v!==null).length,6);
 for(const hash of ['#v=3&edition=mv&answers='+ 'y'.repeat(21),'#v=2&edition=berlin&answers='+ 'y'.repeat(21),'#v=1&edition=bad&answers='+ 'y'.repeat(21),'#v=1&edition=mv&answers=y','#v=1&edition=mv&answers='+ 'x'.repeat(21),'#v=1&v=1&edition=mv&answers='+ 'y'.repeat(21),'#v=toString&edition=mv&answers='+ 'y'.repeat(21)])assert.throws(()=>decodeResult(hash));

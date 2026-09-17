@@ -25,6 +25,29 @@ const rows=[
 ];
 const deCats={Wohnen:'Wohnen',Stadtentwicklung:'Stadtentwicklung',Mobilität:'Mobilität',Bildung:'Bildung',Sicherheit:'Sicherheit',Integration:'Integration',Kultur:'Kultur',Klima:'Klima',Gesundheit:'Gesundheit',Berlin:'Berlin',Finanzen:'Finanzen'};
 const enCats={Wohnen:'Housing',Stadtentwicklung:'Urban development',Mobilität:'Mobility',Bildung:'Education',Sicherheit:'Safety',Integration:'Integration',Kultur:'Culture',Klima:'Climate',Gesundheit:'Healthcare',Berlin:'Berlin',Finanzen:'Finance'};
-export const berlinQuestions=rows.map(([topic,category,statement,pro,con,positions],i)=>({id:i+1,topic,category,statement,pro,con,positions,de:{topic,category,statement,pro,con},en:{topic:{Mieten:'Rents',Vergesellschaftung:'Socialisation',Neubau:'New housing',['Tempelhofer Feld']:'Tempelhofer Feld',Verkehrswende:'Transport shift',A100:'A100 motorway',['ÖPNV-Preis']:'Public transport fares',Schulessen:'School meals',Schulplätze:'School places',Deutschförderung:'German support',Polizei:'Police',Videoüberwachung:'CCTV',Aufenthalt:'Residence status',Unterbringung:'Accommodation',Kultur:'Culture',Klima:'Climate',Energie:'Energy',Krankenhäuser:'Hospitals',Verwaltung:'Administration',Schuldenbremse:'Debt brake',Olympia:'Olympics'}[topic],category:enCats[category],statement,pro,con}}));
+const enStatements=[
+'Berlin should introduce a state-level rent cap.',
+'Large private housing companies should be brought into public ownership in exchange for compensation.',
+'Berlin should allow faster and taller construction, even if some rules have to be relaxed.',
+'New housing should be allowed on parts of Tempelhofer Feld.',
+'Berlin should reallocate car lanes to cycling, walking and public transport.',
+'Further construction of the A100 motorway should be stopped.',
+'Berlin public transport should become substantially cheaper or partly free.',
+'School meals should be free for every child in Berlin.',
+'Berlin should build new schools and childcare places faster, including through simplified procedures.',
+'Children with insufficient German should be required to attend language support before starting school.',
+'Berlin should invest more in police and visible presence in places with high levels of crime.',
+'Berlin should use more video surveillance at crime hotspots.',
+'Berlin should give people with tolerated status a secure residence perspective more quickly.',
+'Berlin should house refugees in ordinary homes across the city rather than large collective accommodation.',
+'Berlin should provide more public funding for culture, even if other spending has to be reduced.',
+'Berlin should reach climate neutrality substantially before 2045.',
+'Berlin should accelerate solar power on public and private buildings through mandatory requirements.',
+'Berlin should keep hospitals and essential healthcare services more strongly in public ownership.',
+'Berlin should offer all administrative services digitally while retaining paper-based access.',
+'Berlin should be allowed to borrow more for investment, even if the debt brake has to be relaxed.',
+'Berlin should apply to host the Olympic Games.'
+];
+export const berlinQuestions=rows.map(([topic,category,statement,pro,con,positions],i)=>({id:i+1,topic,category,statement,pro,con,positions,de:{topic,category,statement,pro,con},en:{topic:{Mieten:'Rents',Vergesellschaftung:'Public ownership',Neubau:'New housing',['Tempelhofer Feld']:'Tempelhofer Feld',Verkehrswende:'Transport shift',A100:'A100 motorway',['ÖPNV-Preis']:'Public transport fares',Schulessen:'School meals',Schulplätze:'School places',Deutschförderung:'German support',Polizei:'Police',Videoüberwachung:'CCTV',Aufenthalt:'Residence status',Unterbringung:'Accommodation',Kultur:'Culture',Klima:'Climate',Energie:'Energy',Krankenhäuser:'Hospitals',Verwaltung:'Administration',Schuldenbremse:'Debt brake',Olympia:'Olympics'}[topic],category:enCats[category],statement:enStatements[i],pro,con}}));
 export const berlinSources=[['CDU','https://berlin-wird.de/image/uploads/data/regierungsprogramm2026_2031.pdf'],['SPD','https://spd.berlin/wahlprogramm/'],['Bündnis 90 / Die Grünen','https://gruene.berlin/wahlprogramm-neu/unser-wahlprogramm-praeambel'],['FDP','https://www.fdp-berlin.de/wahlprogramm'],['AfD','https://afd.berlin/abgeordnetenhauswahl/'],['Die Linke','https://www.die-linke-berlin.de/positionen/wahlprogramm/'],['BSW','https://bsw.berlin/']];
 export function rankBerlin(answers){return berlinParties.map((p,j)=>{let total=0,count=0;berlinQuestions.forEach((q,i)=>{if(!answers[i]||q.positions[j]===null)return;total+=1-Math.abs(answers[i]-q.positions[j])/2;count++});return{party:j,score:count?Math.round(total/count*100):null,count}}).sort((a,b)=>(b.score??-1)-(a.score??-1)||a.party-b.party)}
